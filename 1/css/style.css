@@ -1,0 +1,383 @@
+* {
+    box-sizing: border-box;
+    transition: all ease-in-out 250ms;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+body {
+    background: #e4beeb81;
+    margin: 0;
+    font-family: 'JetBrains Mono', sans-serif;
+    text-align: center;
+}
+
+.container {
+    width: 95%;
+    max-width: 70em;
+    margin: 0 auto;
+}
+
+.clearfix::after,
+section::after,
+footer::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+/* column system */
+
+[class^=col-] {
+    width: 100%;
+    margin-top: 1em;
+}
+
+[class^=col-]:first-child {
+    margin-top: 0;
+}
+
+.col-1 {
+    width: 33.333333%;
+    float: left;
+}
+
+@media (min-width: 40rem) {
+
+    [class^=col-] {
+        float: left;
+        padding: 0 0.5em;
+        margin-top: 0;
+    }
+
+    [class^=col-]:first-child {
+        padding-left: 0;
+    }
+
+    [class^=col-]:last-child {
+        padding-right: 0;
+    }
+
+    .col-3 {
+        width: 50%;
+    }
+
+    .col-1 {
+        width: 16.6666%;
+    }
+}
+
+/* typography */
+
+h1 {
+    font-weight: 300;
+    font-size: 1.7rem;
+    margin-top: 0;
+}
+
+p {
+    margin-top: 0;
+    line-height: 1.5;
+}
+
+p:last-of-type {
+    margin-bottom: 0;
+}
+
+.title {
+    color: #232323;
+    font-size: 2.5rem;
+    margin-bottom: 1.5em;
+    font-weight: 900;
+    margin-top: 1em;
+}
+
+.title span {
+    font-weight: 300;
+    display: block;
+    font-size: 0.9em;
+}
+
+.title-cta {
+    margin: 0 0 0.5em;
+}
+
+.unstyled-list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+@media (min-width: 60rem) {
+    p {
+        font-size: 1.2rem;
+        line-height: 1.6;
+    }
+
+    .title {
+        font-size: 3.7rem;
+    }
+}
+
+/* buttons */
+
+.button {
+    display: inline-block;
+    font-size: 1.15rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    border-width: 2px;
+    border-style: solid;
+    padding: 0.5em 1.75em;
+}
+
+.button-small {
+    font-size: 0.6rem;
+    font-weight: 700;
+}
+
+.button-accent {
+    color: #e4beeb;
+    border-color: #e4beeb;
+}
+
+.button-accent:hover,
+.button-accent:focus {
+    background: #e4beeb;
+    color: #232323;
+}
+
+.button-dark {
+    color: #232323;
+    border-color: #232323;
+}
+
+.button-dark:hover,
+.button-dark:focus {
+    background: #232323;
+    color: #e4beeb;
+}
+
+@media (min-width: 60rem) {
+    .button {
+        font-size: 1.5rem;
+    }
+}
+
+/* parallax */
+
+.parallax--bg, .parallax--box {
+    transition: initial;
+}
+
+/* header */
+
+header {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 1em;
+}
+
+.logo {
+    width: 100%;
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+nav li {
+    display: inline-block;
+    margin: 1em;
+}
+
+nav a {
+    font-weight: 900;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 1rem;
+    padding: 0.5em;
+    color: black;
+}
+
+nav a:hover,
+nav a:focus {
+    -webkit-text-stroke: #232323;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-fill-color: #e4beeb;
+}
+
+@media (min-width: 30rem) {
+    .logo {
+        width: 70%;
+    }
+}
+
+@media (min-width: 60rem) {
+    .logo {
+        float: left;
+        width: 40%;
+    }
+
+    nav {
+        float: right;
+    }
+
+    nav a {
+        font-size: 1.5rem;
+    }
+}
+
+/* home-hero */
+
+.home-hero {
+    background-image: url('../img/hero-bg-70.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 10em 0;
+    color: white;
+}
+
+@media (min-width: 60rem) {
+    .home-hero {
+        height: 100vh;
+        padding-top: 35vh;
+    }
+}
+
+/* home-about */
+
+.home-about-textbox {
+    background-color: #414049;
+    padding: 4em;
+    width: 100vw;
+    margin-left: -2.5%;
+    outline: 2px solid #e4beeb;
+    outline-offset: -2.5rem;
+    color: white;
+    position: relative;
+}
+
+.home-about-textbox h1 {
+    color: #e4beeb;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0.75em;
+    background: #414049;
+    padding: 0 0.1em;
+}
+
+@media (min-width: 25rem) {
+    h1 {
+        font-size: 2rem
+    }
+
+    .home-about-textbox h1 {
+        top: 0.6em;
+        padding: 0 0.325em;
+    }
+}
+
+@media (min-width: 60rem) {
+    h1 {
+        font-size: 2.5rem
+    }
+
+    .home-about {
+        background-image: url('../img/dish.jpg');
+        background-repeat: no-repeat;
+        padding-bottom: 10em;
+    }
+
+    .home-about-textbox {
+        width: 50%;
+        padding: 7em;
+        outline-offset: -3.75em;
+        margin-left: -2.5%;
+        top: -5em;
+        text-align: left;
+        box-shadow: 0 0 4em 0 rgba(0, 0, 0, .5);
+    }
+
+    .home-about-textbox h1 {
+        top: 0.75em;
+        left: 6rem;
+        transform: translateX(0);
+    }
+}
+
+/* porfolio */
+
+.portfolio {
+    margin: 3em 0 0;
+}
+
+.port-item {
+    margin: 0;
+    position: relative;
+}
+
+.port-item img {
+    display: block;
+}
+
+.port-desc {
+    position: absolute;
+    z-index: 100;
+    bottom: 0em;
+    left: 0em;
+    right: 0em;
+    color: white;
+    background: rgba(0, 0, 0, 0.6);
+    padding-bottom: 1em;
+    padding-top: 2em;
+}
+
+.port-desc p {
+    margin: 1em;
+}
+
+@media (min-width: 37rem) {
+    .port-item {
+        width: 50%;
+        float: left;
+    }
+}
+
+@media (min-width: 60rem) {
+    .port-item {
+        width: 33.333334%;
+        overflow: hidden;
+    }
+
+    .port-desc {
+        transform: translateY(150%);
+    }
+
+    .port-item:hover .port-desc {
+        transform: translateY(0%);
+    }
+}
+
+/* cta */
+
+.cta {
+    background-color: #e4beeb;
+    padding: 5em 0;
+}
+
+/* footer */
+
+footer {
+    background: #232323;
+    color: white;
+    text-align: left;
+    padding: 5em 0;
+}
