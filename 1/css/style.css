@@ -2,6 +2,7 @@
     box-sizing: border-box;
     transition: ease-in-out 300ms;
     /* outline: 1px solid #000000; */
+    scroll-behavior: smooth;
 }
 
 img {
@@ -143,11 +144,14 @@ nav a:hover, nav a:focus {
 
 /* home-hero */
 
-.home-hero {
-    background-image: url('../img/hero-bg-80.jpg');
-    padding: 10em 0;
+[class$="hero"] {
+    padding: 15em 0;
     background-size: cover;
     background-position: center;
+}
+
+.home-hero {
+    background-image: url('../img/hero-bg-80.jpg');
 }
 
 .title {
@@ -162,7 +166,7 @@ nav a:hover, nav a:focus {
 }
 
 @media (min-width: 60rem) {
-    .home-hero {
+    [class$="hero"] {
         height: 100vh;
         padding-top: 35vh;
     }
@@ -272,4 +276,99 @@ footer {
 
 footer p {
     margin: 0;
+}
+
+
+/* -------------- menu -------------- */
+
+.menu-hero {
+    background-image: url('../img/menu-hero-70.jpg');
+}
+
+.menu-items {
+    display: grid;
+}
+
+.menu-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.item-img {
+    transform: translateX(50%);
+}
+
+.item-desc {
+    transform: translateX(-50%);
+    padding: 5em 0 5em;
+    visibility: hidden;
+    opacity: 0;
+    transition: transform 200ms visibility 0ms;
+}
+
+.item-img, .item-desc {
+    width: 50%;
+}
+
+.menu-item:hover .item-img,
+.menu-item:hover .item-desc {
+    transform: translateX(0);
+    opacity: 1;
+    visibility: visible;
+}
+
+/* -------------- contact -------------- */
+
+/* hero */
+
+.contact-hero {
+    background-image: url('../img/contact-hero-80.jpg');
+}
+
+/* locations */
+
+.contact-locations {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+}
+
+.hours-info {
+    width: 30%;
+    font-size: 1.25em;
+}
+
+.locations-info {
+    width: 50%;
+    height: 80vh;
+}
+
+.contact-locations a {
+    display: none;
+}
+
+@media (max-width: 1000px) {
+    .contact-locations {
+        display: block;
+    }
+    [class$="info"] {
+        width: 100%;
+    }
+}
+
+@media (max-width: 500px) {
+    .locations-info {
+        display: none;
+    }
+    .contact-locations a {
+        display: block;
+        margin-bottom: 1em;
+    }
 }
