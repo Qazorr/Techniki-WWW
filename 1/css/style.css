@@ -61,8 +61,13 @@ section::after {
 
 /*? top-page */
 
+#top {
+    display: none;
+}
+
 @media (min-width: 1000px) {
     #top {
+        display: block;
         position: fixed;
         cursor: default;
         background-color: #d67be6;
