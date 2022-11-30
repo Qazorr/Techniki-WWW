@@ -1,0 +1,437 @@
+:root {
+    --font: 'JetBrains Mono';
+    --navbar-color: #690077;
+    --accent-color: #9c269c;
+    --button-color: #b600cecb;
+    --background-color: #e4beeb;
+    --link-color: #ffffff;
+    --post-text-color: #ffffff;
+    --like-color: #FF0000;
+    --comment-background-color: #c86ad6;
+}
+
+* {
+    box-sizing: border-box;
+    transition: ease-in-out 200ms;
+    /* outline: 1px solid #000000; */
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: var(--background-color);
+    font-family: var(--font, sans-serif);
+    text-align: center;
+}
+
+.App {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+button {
+    color: var(--link-color);
+    background-color: var(--button-color);
+    border: 2px solid var(--navbar-color);
+}
+
+button:hover {
+    cursor: pointer;
+    box-shadow: var(--accent-color) 0px 7px 29px 0px;
+}
+
+.App>div {
+    width: 100%;
+}
+
+/* navbar */
+
+.navbar {
+    width: 100%;
+    height: 70px;
+    background-color: var(--navbar-color);
+    display: flex;
+    align-items: center;
+}
+
+.loggedInContainer {
+    flex: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: var(--link-color);
+}
+
+.navbar button {
+    width: 100px;
+    height: 40px;
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--link-color);
+    background-color: var(--button-color);
+    cursor: pointer;
+    margin: 10px;
+    border-radius: 20px;
+}
+
+.loggedInContainer .username {
+    font-size: 30px;
+    font-weight: 500;
+    color: var(--link-color);
+    text-align: right;
+    margin-right: 20px;
+}
+
+/* login page */
+
+.loginPage {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    padding-top: 100px;
+}
+
+.loginPage fieldset {
+    width: 25%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border: 5px solid var(--accent-color);
+    border-style: double;
+}
+
+.loginPage legend {
+    font-size: 30px;
+    margin-bottom: 20px;
+    padding: 0 15px 0 15px;
+}
+
+.loginPage input {
+    width: 75%;
+    height: 50px;
+    border-radius: 8px;
+    border: none;
+    margin: 10px;
+}
+
+.loginPage input {
+    border: 2px solid var(--button-color);
+}
+
+.loginPage button {
+    color: var(--link-color);
+    background-color: var(--button-color);
+    width: 25%;
+    height: 40px;
+    border-radius: 20px;
+}
+
+/* registration page */
+
+.registrationPage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+.registrationPage label {
+    margin-top: 20px;
+}
+
+.registrationPage input {
+    height: 30px;
+    border-radius: 25px;
+    padding-left: 10px;
+}
+
+.registrationPage .formContainer {
+    position: relative;
+    border: solid 5px var(--navbar-color);
+    border-style: double;
+}
+
+.registrationPage legend {
+    font-size: 30px;
+    position: absolute;
+    transform-origin: inherit;
+    background-color: var(--background-color);
+    width: 40%;
+    top: -10%;
+    left: 30%;
+}
+
+.registerBttn {
+    width: 25%;
+    height: 40px;
+    margin-top: 10px;
+    border-radius: 20px;
+}
+
+/* home page */
+
+.homePage {
+    display: block;
+    width: 100%;
+}
+
+.post {
+    position: relative;
+    float: left;
+    display: flex;
+    flex-direction: column;
+    width: 33.3%;
+    height: 300px;
+
+    border-radius: 10px;
+    margin-top: 50px;
+    border: 1px solid lightgray;
+    box-shadow: var(--accent-color) 0px 2px 8px 0px;
+}
+
+.post:hover {
+    box-shadow: var(--accent-color) 0px 7px 29px 0px;
+    cursor: pointer;
+}
+
+.post .title,
+.post .body,
+.post .footer,
+.footer .buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.post .title {
+    flex: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--accent-color);
+    color: var(--post-text-color);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.post .body {
+    flex: 60%;
+}
+
+.post .footer {
+    flex: 20%;
+    padding-left: 15px;
+    background-color: var(--accent-color);
+    color: var(--post-text-color);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.footer .username {
+    flex: 0%;
+    justify-content: flex-start;
+}
+
+.footer .buttons {
+    flex: 100%;
+    justify-content: flex-end;
+}
+
+.likeBttn {
+    color: var(--like-color);
+}
+
+.buttons label {
+    margin: 0 20px 0 10px;
+}
+
+/* create post */
+
+.createPostPage {
+    width: 100vw;
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    width: 40%;
+    height: auto;
+    padding: 20px;
+    border: 5px solid var(--accent-color);
+    border-style: double;
+    border-radius: 20px;
+}
+
+#inputCreatePostTitle,
+#inputCreatePostText {
+    font-size: 20px;
+    height: 40px;
+    margin: 15px 0 15px;
+    border-radius: 15px;
+    padding-left: 15px;
+    border: 3px solid var(--navbar-color);
+}
+
+.formContainer span {
+    color: red;
+}
+
+.formContainer label {
+    margin-top: 15px;
+}
+
+.createPostPage legend {
+    font-size: 30px;
+    position: absolute;
+    transform-origin: inherit;
+    background-color: var(--background-color);
+    width: 40%;
+    top: -7%;
+    left: 30%;
+}
+
+.createPostPage button {
+    width: 25%;
+    height: 40px;
+    border-radius: 20px;    
+}
+
+/* page with comments */
+
+.postPage {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+}
+
+/* post side */
+
+.leftSide {
+    flex: 50%;
+    height: calc(100vh - 70px);
+    display: grid;
+    place-items: center;
+}
+
+#individual {
+    width: 70%;
+    height: 70%;
+}
+
+#individual .title,
+#individual .footer {
+    font-size: 30px;
+}
+
+#individual .body {
+    font-size: 25px;
+}
+
+/* comment side */
+
+.rightSide {
+    flex: 50%;
+    height: calc(100vh - 200px);
+    display: flex;
+    flex-direction: column;
+}
+
+.rightSide .addCommentContainer {
+    flex: 20%;
+    width: 100%;
+    display: grid;
+    place-items: center;
+    margin-top: 25px;
+}
+
+.addCommentContainer input {
+    width: 50%;
+    height: 50px;
+    border-radius: 8px;
+    border: none;
+    border: 2px solid var(--accent-color);
+}
+
+.rightSide .listOfComments {
+    flex: 80%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.listOfComments .comment {
+    position: relative;
+    width: 70%;
+    height: auto;
+    padding: 30px;
+    outline: 2px solid black;
+    background-color: var(--comment-background-color);
+    border-radius: 20px;
+    margin-top: 20px;
+}
+
+.comment .username {
+    background-color: var(--navbar-color);
+    color: var(--link-color);
+    outline: 2px solid black;
+    position: absolute;
+    width: 20%;
+    padding: 10px;
+    border-radius: 20px;
+    top: 0%;
+    left: 0%;
+}
+
+.commentBody {
+    margin-top: 15px;
+}
+
+.addCommentBttn {
+    width: 25%;
+    height: 40px;
+    border-radius: 40px;
+    margin: 10px;
+}
+
+.deleteBttn {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 20px;
+    background-color: red;
+}
+
+.deletePostBttn {
+    position: absolute;
+    outline: 1px solid black;
+    top: 1%;
+    right: 1%;
+}
+
+.deleteCommentBttn {
+    position: absolute;
+    outline: 1px solid black;
+    right: 0%;
+    top: 0%;
+}
