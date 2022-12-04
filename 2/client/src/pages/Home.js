@@ -75,46 +75,48 @@ function Home() {
 
     return (
         <div className="homePage">
-            {listOfPosts.map((value, key) => {
-                return (
-                    <div key={key} className="post">
-                        <div className="title"> {value.title} </div>
-                        <div
-                            className="body"
-                            onClick={() => {
-                                navigate(`/post/${value.id}`);
-                            }}
-                        >
-                            {value.postText}
-                        </div>
-                        <div className="footer">
-                            <div className="username">
-                                <Link to={`/profile/${value.UserId}`}>
-                                    {value.username}
-                                </Link>
+            <div className="posts">
+                {listOfPosts.map((value, key) => {
+                    return (
+                        <div key={key} className="post">
+                            <div className="title"> {value.title} </div>
+                            <div
+                                className="body"
+                                onClick={() => {
+                                    navigate(`/post/${value.id}`);
+                                }}
+                            >
+                                {value.postText}
                             </div>
-                            <div className="buttons">
-                                {likedPosts.includes(value.id) ? (
-                                    <FavoriteIcon
-                                        onClick={() => {
-                                            likePost(value.id);
-                                        }}
-                                        className="likeBttn"
-                                    />
-                                ) : (
-                                    <FavoriteBorderIcon
-                                        onClick={() => {
-                                            likePost(value.id);
-                                        }}
-                                        className="likeBttn"
-                                    />
-                                )}
-                                <label> {value.Likes.length} </label>
+                            <div className="footer">
+                                <div className="username">
+                                    <Link to={`/profile/${value.UserId}`}>
+                                        {value.username}
+                                    </Link>
+                                </div>
+                                <div className="buttons">
+                                    {likedPosts.includes(value.id) ? (
+                                        <FavoriteIcon
+                                            onClick={() => {
+                                                likePost(value.id);
+                                            }}
+                                            className="likeBttn"
+                                        />
+                                    ) : (
+                                        <FavoriteBorderIcon
+                                            onClick={() => {
+                                                likePost(value.id);
+                                            }}
+                                            className="likeBttn"
+                                        />
+                                    )}
+                                    <label> {value.Likes.length} </label>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                );
-            })}
+                    );
+                })}
+            </div>
         </div>
     );
 }

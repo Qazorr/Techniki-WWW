@@ -8,6 +8,7 @@
     --post-text-color: #ffffff;
     --like-color: #FF0000;
     --comment-background-color: #c86ad6;
+    --outline-color: rgb(102, 0, 97);
 }
 
 * {
@@ -48,7 +49,7 @@ button:hover {
     width: 100%;
 }
 
-/* navbar */
+/*! navbar */
 
 .navbar {
     width: 100%;
@@ -72,16 +73,22 @@ a {
     color: var(--link-color);
 }
 
-.navbar button {
-    width: 100px;
-    height: 40px;
-    font-size: 16px;
-    font-weight: bold;
+.logoutBttn {
     color: var(--link-color);
     background-color: var(--button-color);
-    cursor: pointer;
-    margin: 10px;
+    border: 2px solid var(--navbar-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    width: 5%;
+    height: 40px;
     border-radius: 20px;
+}
+
+.logoutBttn:hover {
+    cursor: pointer;
+    box-shadow: var(--accent-color) 0px 7px 29px 0px;
 }
 
 .loggedInContainer .username {
@@ -92,7 +99,7 @@ a {
     margin-right: 20px;
 }
 
-/* login page */
+/*! login page */
 
 .loginPage {
     display: flex;
@@ -103,7 +110,7 @@ a {
     padding-top: 100px;
 }
 
-.loginPage fieldset {
+fieldset {
     width: 25%;
     display: flex;
     align-items: center;
@@ -112,7 +119,7 @@ a {
     border-style: double;
 }
 
-.loginPage legend {
+legend {
     font-size: 30px;
     margin-bottom: 20px;
     padding: 0 15px 0 15px;
@@ -124,21 +131,16 @@ a {
     border-radius: 8px;
     border: none;
     margin: 10px;
-}
-
-.loginPage input {
     border: 2px solid var(--button-color);
 }
 
 .loginPage button {
-    color: var(--link-color);
-    background-color: var(--button-color);
     width: 25%;
     height: 40px;
     border-radius: 20px;
 }
 
-/* registration page */
+/*! registration page */
 
 .registrationPage {
     display: flex;
@@ -155,6 +157,10 @@ a {
     height: 30px;
     border-radius: 25px;
     padding-left: 10px;
+}
+
+.registrationPage input:last-of-type {
+    margin-bottom: 40px;
 }
 
 .registrationPage .formContainer {
@@ -174,30 +180,38 @@ a {
 }
 
 .registerBttn {
+    position: absolute;
+    top: 71%;
+    left: 37%;
     width: 25%;
     height: 40px;
     margin-top: 10px;
     border-radius: 20px;
 }
 
-/* home page */
+/*! home page */
 
 .homePage {
     display: block;
     width: 100%;
 }
 
+.posts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
 .post {
     position: relative;
-    float: left;
     display: flex;
     flex-direction: column;
-    width: 33.3%;
+    width: 40%;
     height: 300px;
 
     border-radius: 10px;
     margin-top: 50px;
-    border: 1px solid lightgray;
+    outline: 1px solid var(--outline-color);
     box-shadow: var(--accent-color) 0px 2px 8px 0px;
 }
 
@@ -257,7 +271,7 @@ a {
     margin: 0 20px 0 10px;
 }
 
-/* create post */
+/*! create post */
 
 .createPostPage {
     width: 100vw;
@@ -309,12 +323,15 @@ a {
 }
 
 .createPostPage button {
+    position: absolute;
+    top: 110%;
+    left: 37%;
     width: 25%;
     height: 40px;
-    border-radius: 20px;    
+    border-radius: 20px;
 }
 
-/* page with comments */
+/*! page with comments */
 
 .postPage {
     display: flex;
@@ -323,7 +340,7 @@ a {
     height: 100%;
 }
 
-/* post side */
+/*? == post side == */
 
 .leftSide {
     flex: 50%;
@@ -346,7 +363,7 @@ a {
     font-size: 25px;
 }
 
-/* comment side */
+/*? == comment side == */
 
 .rightSide {
     flex: 50%;
@@ -434,4 +451,38 @@ a {
     outline: 1px solid black;
     right: 0%;
     top: 0%;
+}
+
+/*! profile page */
+
+.changepasswordBttn {
+    width: 10%;
+    height: 30px;
+    border-radius: 20px;
+}
+
+/*! change password */
+
+.changePasswordPage {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    padding-top: 100px;
+}
+
+.changePasswordPage input {
+    width: 75%;
+    height: 50px;
+    border-radius: 8px;
+    border: none;
+    margin: 10px;
+    border: 2px solid var(--button-color);
+}
+
+.changePasswordPage button {
+    width: 25%;
+    height: 40px;
+    border-radius: 20px;
 }

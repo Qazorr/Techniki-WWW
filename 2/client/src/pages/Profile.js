@@ -25,7 +25,7 @@ function Profile() {
     }, []);
 
     return (
-        <div className="profilePageContainer">
+        <div className="profilePage">
             <div className="basicInfo">
                 <h1>Username: {username}</h1>
                 {authState.username === username && (
@@ -33,13 +33,13 @@ function Profile() {
                         onClick={() => {
                             navigate("/changepassword");
                         }}
+                        className="changepasswordBttn"
                     >
-                        {" "}
                         Change Password
                     </button>
                 )}
             </div>
-            <div className="listOfPosts">
+            <div className="posts">
                 {listOfPosts.map((value, key) => {
                     return (
                         <div key={key} className="post">
@@ -55,7 +55,7 @@ function Profile() {
                             <div className="footer">
                                 <div className="username">{value.username}</div>
                                 <div className="buttons">
-                                    <FavoriteIcon />
+                                    <FavoriteIcon className="likeBttn"/>
                                     <label> {value.Likes.length} </label>
                                 </div>
                             </div>

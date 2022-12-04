@@ -27,23 +27,27 @@ function ChangePassword() {
     };
 
     return (
-        <div>
-            <h1>ChangePassword</h1>
-            <input
-                type="text"
-                placeholder="Old password..."
-                onChange={(event) => {
-                    setOldPassword(event.target.value);
-                }}
-            />
-            <input
-                type="text"
-                placeholder="New password..."
-                onChange={(event) => {
-                    setNewPassword(event.target.value);
-                }}
-            />
-            <button onClick={changePassword}> Save Changes </button>
+        <div className="changePasswordPage">
+            <fieldset>
+                <legend>Change Password</legend>
+                <label>Old password</label>
+                <input
+                    type="text"
+                    placeholder="Old password..."
+                    onChange={(event) => {
+                        setOldPassword(event.target.value);
+                    }}
+                />
+                <label>New Password</label>
+                <input
+                    type="text"
+                    placeholder="New password..."
+                    onChange={(event) => {
+                        setNewPassword(event.target.value);
+                    }}
+                />
+                <button onClick={changePassword}> Save Changes </button>
+            </fieldset>
         </div>
     );
 }

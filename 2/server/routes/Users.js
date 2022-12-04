@@ -67,18 +67,19 @@ router.put("/changepassword", validateToken, async (req, res) => {
     });
     bcrypt.compare(oldPassword, user.password).then(async (matches) => {
         if (!matches) res.json({ error: "Wrong password entered" });
-    });
-
-    bcrypt.hash(newPassword, 10).then((hash) => {
-        Users.update(
-            { password: hash },
-            {
-                where: {
-                    username: req.user.username,
-                },
-            }
-        );
-        res.json("Success");
+        else {
+            bcrypt.hash(newPassword, 10).then((hash) => {
+                Users.update(
+                    { password: hash },
+                    {
+                        where: {
+                            username: req.user.username,
+                        },
+                    }
+                );
+                res.json("Success");
+            });
+        }
     });
 });
 

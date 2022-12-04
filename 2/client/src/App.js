@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Home from "./pages/Home";
 import CreatePost from "./pages/CreatePost";
 import Post from "./pages/Post";
@@ -11,7 +11,6 @@ import ChangePassword from "./pages/ChangePassword";
 import { AuthContext } from "./helpers/AuthContext";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { ReactComponent as Logo } from "./img/logo.svg";
 
 function App() {
     const [authState, setAuthState] = useState({
@@ -63,17 +62,26 @@ function App() {
                             ) : (
                                 <>
                                     <Link to="/" className="logo">
-                                        {/* <Logo /> */}
-                                        Home Page
+                                        Home
                                     </Link>
-                                    <Link to="/createpost"> Create A Post </Link>
+                                    <Link to="/createpost">Create A Post</Link>
                                 </>
                             )}
                         </div>
                         <div className="loggedInContainer">
-                            <div className="username">{authState.username}</div>
+                            <div className="username">
+                                <Link to={`/profile/${authState.id}`}>
+                                    {authState.username}
+                                </Link>
+                            </div>
                             {authState.status && (
-                                <button onClick={logout}> Logout </button>
+                                <Link
+                                    to="/login"
+                                    onClick={logout}
+                                    className="logoutBttn"
+                                >
+                                    Logout
+                                </Link>
                             )}
                         </div>
                     </div>
