@@ -128,11 +128,11 @@ legend {
 
 .loginPage input {
     width: 75%;
-    height: 50px;
-    border-radius: 8px;
-    border: none;
+    height: 40px;
     margin: 10px;
-    border: 2px solid var(--button-color);
+    border: 3px solid var(--navbar-color);
+    border-radius: 15px;
+    padding-left: 10px;
 }
 
 .loginPage button {
@@ -160,10 +160,6 @@ legend {
     padding-left: 10px;
 }
 
-.registrationPage input:last-of-type {
-    margin-bottom: 40px;
-}
-
 .registrationPage .formContainer {
     position: relative;
     border: solid 5px var(--navbar-color);
@@ -182,7 +178,7 @@ legend {
 
 .registerBttn {
     position: absolute;
-    top: 71%;
+    top: 110%;
     left: 37%;
     width: 25%;
     height: 40px;
@@ -305,7 +301,9 @@ legend {
 }
 
 #inputCreatePostTitle,
-#inputCreatePostText {
+#inputCreatePostText,
+#inputRegisterUsername,
+#inputRegisterPassword {
     font-size: 20px;
     height: 40px;
     margin: 15px 0 15px;
@@ -315,6 +313,7 @@ legend {
 }
 
 .formContainer span {
+    font-weight: bold;
     color: red;
 }
 
