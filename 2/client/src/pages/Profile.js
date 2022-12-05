@@ -27,7 +27,7 @@ function Profile() {
     return (
         <div className="profilePage">
             <div className="basicInfo">
-                <h1>Username: {username}</h1>
+                <h1>Hello {username}!</h1>
                 {authState.username === username && (
                     <button
                         onClick={() => {

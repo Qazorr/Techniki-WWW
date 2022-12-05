@@ -6,7 +6,8 @@
     --background-color: #e4beeb;
     --link-color: #ffffff;
     --post-text-color: #ffffff;
-    --like-color: #FF0000;
+    --like-color: #bd0000;
+    --liked-post-background-color: #be30be;
     --comment-background-color: #c86ad6;
     --outline-color: rgb(102, 0, 97);
 }
@@ -269,6 +270,15 @@ legend {
 
 .buttons label {
     margin: 0 20px 0 10px;
+}
+
+.likedPost {
+    outline: 1px solid var(--liked-post-background-color);
+}
+
+.likedPost .title,
+.likedPost .footer {
+    background-color: var(--liked-post-background-color);
 }
 
 /*! create post */

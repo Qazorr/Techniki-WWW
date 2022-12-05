@@ -78,7 +78,10 @@ function Home() {
             <div className="posts">
                 {listOfPosts.map((value, key) => {
                     return (
-                        <div key={key} className="post">
+                        <div
+                            key={key}
+                            className={`post ${likedPosts.includes(value.id) ? "likedPost" : ""}`}
+                        >
                             <div className="title"> {value.title} </div>
                             <div
                                 className="body"

@@ -80,28 +80,36 @@ function Post() {
     const editPost = (option) => {
         if (option === "title") {
             let newTitle = prompt("Enter new title:");
-            axios.put(
-                "http://localhost:9001/posts/title",
-                { newTitle: newTitle, id: id },
-                {
-                    headers: {
-                        accessToken: localStorage.getItem("accessToken"),
-                    },
-                }
-            );
-            setPostObject({ ...postObject, title: newTitle });
+            if (newTitle) {
+                axios.put(
+                    "http://localhost:9001/posts/title",
+                    { newTitle: newTitle, id: id },
+                    {
+                        headers: {
+                            accessToken: localStorage.getItem("accessToken"),
+                        },
+                    }
+                );
+                setPostObject({ ...postObject, title: newTitle });
+            } else {
+                alert("You must put some title");
+            }
         } else {
             let newPostText = prompt("Enter new text:");
-            axios.put(
-                "http://localhost:9001/posts/postText",
-                { newText: newPostText, id: id },
-                {
-                    headers: {
-                        accessToken: localStorage.getItem("accessToken"),
-                    },
-                }
-            );
-            setPostObject({ ...postObject, postText: newPostText });
+            if (newPostText) {
+                axios.put(
+                    "http://localhost:9001/posts/postText",
+                    { newText: newPostText, id: id },
+                    {
+                        headers: {
+                            accessToken: localStorage.getItem("accessToken"),
+                        },
+                    }
+                );
+                setPostObject({ ...postObject, postText: newPostText });
+            } else {
+                alert("You must put some text");
+            }
         }
     };
 
@@ -153,7 +161,9 @@ function Post() {
                             setNewComment(event.target.value);
                         }}
                     />
-                    <button className="addCommentBttn" onClick={addComment} > Add Comment</button>
+                    <button className="addCommentBttn" onClick={addComment}>
+                        Add Comment
+                    </button>
                 </div>
                 <div className="listOfComments">
                     {comments.map((comment, key) => {
@@ -162,7 +172,9 @@ function Post() {
                                 <label className="username">
                                     {comment.username}
                                 </label>
-                                <p className="commentBody">{comment.commentBody}</p>
+                                <p className="commentBody">
+                                    {comment.commentBody}
+                                </p>
                                 {authState.username === comment.username && (
                                     <button
                                         className="deleteBttn deleteCommentBttn"
