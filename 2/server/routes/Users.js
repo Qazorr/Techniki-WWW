@@ -7,13 +7,21 @@ const { validateToken } = require("../middlewares/AuthMiddleware");
 
 router.post("/", async (req, res) => {
     const { username, password } = req.body;
-    bcrypt.hash(password, 10).then((hash) => {
-        Users.create({
+    const user = await Users.findOne({
+        where: {
             username: username,
-            password: hash,
+        },
+    })
+    if (user) res.json({error: "User already exists"})
+    else {
+        bcrypt.hash(password, 10).then((hash) => {
+            Users.create({
+                username: username,
+                password: hash,
+            });
+            res.json("User created");
         });
-        res.json("Success");
-    });
+    }
 });
 
 router.post("/login", async (req, res) => {
