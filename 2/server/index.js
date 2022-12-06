@@ -13,10 +13,11 @@ app.use("/posts", postRouter);
 const commentsRouter = require("./routes/Comments");
 app.use("/comments", commentsRouter);
 const usersRouter = require("./routes/Users");
-app.use("/auth", usersRouter);
+app.use("/user", usersRouter);
 const likesRouter = require("./routes/Likes");
 app.use("/likes", likesRouter);
 
+// Sync the sequelize models with the database tables
 db.sequelize.sync().then(() => {
     app.listen(9001, () => {
         console.log("Server running on port 9001");

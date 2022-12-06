@@ -1,27 +1,43 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+
+// helpers
 import { AuthContext } from "../helpers/AuthContext";
 
 function Post() {
+    /* we can get the id of the post we want to display from the URL
+       e.g we want to see post with id 1: http://.../post/1 */
     let { id } = useParams();
+
+    // used to immediately show edited post (optimistic UI update)
     const [postObject, setPostObject] = useState({});
+
+    // used to immediately show new comments (optimistic UI update)
     const [comments, setComments] = useState([]);
+
     const [newComment, setNewComment] = useState("");
     const { authState } = useContext(AuthContext);
+
+    // used for changing the location (e.g after deleting the post)
     let navigate = useNavigate();
 
+    // get post specified by the id in URL and it's comments
     useEffect(() => {
+        // post
         axios.get(`http://localhost:9001/posts/byId/${id}`).then((response) => {
             setPostObject(response.data);
         });
 
+        // comments
         axios.get(`http://localhost:9001/comments/${id}`).then((response) => {
             setComments(response.data);
         });
-    }, []);
+    }, []); // run only on the first render
 
+    /** Add new comment to the Comments table using current post id and state of newComment */
     const addComment = () => {
+        // try to add the comment with passing accessToken in header for authentication
         axios
             .post(
                 "http://localhost:9001/comments",
@@ -43,13 +59,18 @@ function Post() {
                         commentBody: newComment,
                         username: response.data.username,
                     };
+                    // Add the comment to the rendered comments (optimistic UI update)
                     setComments([...comments, commentToAdd]);
                     setNewComment("");
                 }
             });
     };
 
+    /** Delete comment if you are the one who created it
+     * @param {int} id id of the comment
+     */
     const deleteComment = (id) => {
+        // try to delete the comment with passing accessToken in header for authentication
         axios
             .delete(`http://localhost:9001/comments/${id}`, {
                 headers: {
@@ -57,6 +78,7 @@ function Post() {
                 },
             })
             .then(() => {
+                // filter the deleted comment out (optimistic UI update)
                 setComments(
                     comments.filter((val) => {
                         return val.id !== id;
@@ -65,7 +87,12 @@ function Post() {
             });
     };
 
+    /**
+     * Delete post if you are the one who created it
+     * @param {int} id id of the post
+     */
     const deletePost = (id) => {
+        // try to delete the post with passing accessToken in header for authentication
         axios
             .delete(`http://localhost:9001/posts/${id}`, {
                 headers: {
@@ -73,16 +100,24 @@ function Post() {
                 },
             })
             .then(() => {
+                // move out to homepage
                 navigate("/");
             });
     };
 
+    /**
+     * Edit post text
+     * @param {string} option what to modify (title/body)
+     */
     const editPost = (option) => {
         if (option === "title") {
+            // get new title using prompt()
             let newTitle = prompt("Enter new title:");
+
+            // if the new title is not empty update it
             if (newTitle) {
                 axios.put(
-                    "http://localhost:9001/posts/title",
+                    "http://localhost:9001/posts/postTitle",
                     { newTitle: newTitle, id: id },
                     {
                         headers: {
@@ -95,7 +130,10 @@ function Post() {
                 alert("You must put some title");
             }
         } else {
+            // get new body using prompt()
             let newPostText = prompt("Enter new text:");
+
+            // if the new body is not empty update it
             if (newPostText) {
                 axios.put(
                     "http://localhost:9001/posts/postText",

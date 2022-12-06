@@ -5,10 +5,11 @@ function ChangePassword() {
     const [oldPassword, setOldPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
 
+    /** Change user password if logged in */
     const changePassword = () => {
         axios
             .put(
-                "http://localhost:9001/auth/changepassword",
+                "http://localhost:9001/user/changepassword",
                 {
                     oldPassword: oldPassword,
                     newPassword: newPassword,

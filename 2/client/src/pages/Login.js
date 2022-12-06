@@ -1,6 +1,8 @@
 import React, { useState, useContext } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
+// helpers
 import { AuthContext } from "../helpers/AuthContext";
 
 function Login() {
@@ -8,22 +10,27 @@ function Login() {
     const [password, setPassword] = useState("");
     const { setAuthState } = useContext(AuthContext);
 
+    // used for changing the location (e.g after loging in)
     let navigate = useNavigate();
 
+    /** Log in using credentials given in input fields */
     const login = () => {
+        // using data from the input fields try to log in
         const data = { username: username, password: password };
         axios
-            .post("http://localhost:9001/auth/login", data)
+            .post("http://localhost:9001/user/login", data)
             .then((response) => {
+                // if the loggin in didn't go through
                 if (response.data.error) alert(response.data.error);
                 else {
+                    // add accessToken to localStorage and set authentication state to 'authenticated'
                     localStorage.setItem("accessToken", response.data.token);
                     setAuthState({
                         username: response.data.username,
                         id: response.data.id,
                         status: true,
                     });
-                    navigate("/");
+                    navigate("/"); // navigate to homepage
                 }
             });
     };

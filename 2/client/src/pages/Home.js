@@ -1,21 +1,25 @@
-import React from "react";
-import axios from "axios";
-import { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { AuthContext } from "../helpers/AuthContext";
+import axios from "axios";
+
+// icons
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
 function Home() {
     const [listOfPosts, setListOfPosts] = useState([]);
     const [likedPosts, setLikedPosts] = useState([]);
-    const { authState } = useContext(AuthContext);
+
+    // used for changing the location (e.g after trying to access homepage without being logged in)
     let navigate = useNavigate();
 
+    // try to render the posts
     useEffect(() => {
+        // if the user is not logged in we can't access the posts
         if (!localStorage.getItem("accessToken")) {
-            navigate("/login");
+            navigate("/login"); // redirect user to login page
         } else {
+            // try to get all the posts with passing accessToken in header for authentication
             axios
                 .get("http://localhost:9001/posts", {
                     headers: {
@@ -31,8 +35,12 @@ function Home() {
                     );
                 });
         }
-    }, []);
+    }, []); // run only on the first render
 
+    /**
+     * Like the post if you are logged in
+     * @param {int} PostId id of the post to like
+     */
     const likePost = (PostId) => {
         axios
             .post(
@@ -45,9 +53,11 @@ function Home() {
                 }
             )
             .then((response) => {
+                // depending on response (liked/disliked) we optimistically update the UI
                 setListOfPosts(
                     listOfPosts.map((post) => {
                         if (post.id === PostId) {
+                            // we only care about lenght
                             if (response.data.liked) {
                                 return { ...post, Likes: [...post.Likes, 0] };
                             } else {
@@ -80,7 +90,9 @@ function Home() {
                     return (
                         <div
                             key={key}
-                            className={`post ${likedPosts.includes(value.id) ? "likedPost" : ""}`}
+                            className={`post ${
+                                likedPosts.includes(value.id) ? "likedPost" : ""
+                            }`}
                         >
                             <div className="title"> {value.title} </div>
                             <div

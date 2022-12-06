@@ -1,41 +1,48 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../helpers/AuthContext";
 
 function CreatePost() {
-    const { authState } = useContext(AuthContext);
+    // used for changing the location (e.g after succesfull creation of the post)
     let navigate = useNavigate();
 
+    /* these values show in the input fields 
+    when we open up create post page */
     const initialValues = {
         title: "",
         postText: "",
     };
 
+    // schema of how we want our data to look like
+    const validationSchema = Yup.object().shape({
+        title: Yup.string().required("You must input a title"),
+        postText: Yup.string().required("You must input post text"),
+    });
+
+    /** Create new post
+     * @param data title and text of the post
+     */
     const onSubmit = (data) => {
+        // try to make a post
         axios
             .post("http://localhost:9001/posts", data, {
                 headers: {
                     accessToken: localStorage.getItem("accessToken"),
                 },
             })
-            .then((response) => {
-                navigate("/");
+            .then(() => {
+                navigate("/"); // redirect user to homepage
             });
     };
 
-    const validationSchema = Yup.object().shape({
-        title: Yup.string().required("You must input a title"),
-        postText: Yup.string().required("You must input post text"),
-    });
-
+    // if the user is not logged in redirect to login page
     useEffect(() => {
         if (!localStorage.getItem("accessToken")) {
             navigate("/login");
         }
-    }, []);
+    }, []); // run only on the first render
 
     return (
         <div className="createPostPage">
@@ -51,14 +58,14 @@ function CreatePost() {
                     <Field
                         id="inputCreatePostTitle"
                         name="title"
-                        placeholder="(Ex. Title...)"
+                        placeholder="(Ex.: I love Techniki WWW)"
                     />
                     <label>Post:</label>
                     <ErrorMessage name="postText" component="span" />
                     <Field
                         id="inputCreatePostText"
                         name="postText"
-                        placeholder="(Ex. Post...)"
+                        placeholder="(Ex.: Node.js is also very cool)"
                     />
                     <button type="submit">Create Post</button>
                 </Form>
