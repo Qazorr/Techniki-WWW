@@ -303,7 +303,8 @@ legend {
 #inputCreatePostTitle,
 #inputCreatePostText,
 #inputRegisterUsername,
-#inputRegisterPassword {
+#inputRegisterPassword,
+#inputRegisterPasswordConfirmation {
     font-size: 20px;
     height: 40px;
     margin: 15px 0 15px;

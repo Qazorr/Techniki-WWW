@@ -13,6 +13,7 @@ function Registration() {
     const initialValues = {
         username: "",
         password: "",
+        passwordConfirmation: "",
     };
     const { setAuthState } = useContext(AuthContext);
 
@@ -30,6 +31,10 @@ function Registration() {
             .min(4, "Password too short, must be at least 4 characters long")
             .max(20, "Password too long, must be at most 20 characters long")
             .required("You must put a password containing 4-20 characters"),
+        passwordConfirmation: Yup.string().oneOf(
+            [Yup.ref("password"), null],
+            "Passwords must match"
+        ),
     });
 
     /** Create new user and if succesfull log in to the system, else display error message */
@@ -88,6 +93,14 @@ function Registration() {
                     <Field
                         id="inputRegisterPassword"
                         name="password"
+                        type="password"
+                        placeholder="Your Password..."
+                    />
+                    <label>Confirm password:</label>
+                    <ErrorMessage name="passwordConfirmation" component="span" />
+                    <Field
+                        id="inputRegisterPasswordConfirmation"
+                        name="passwordConfirmation"
                         type="password"
                         placeholder="Your Password..."
                     />
