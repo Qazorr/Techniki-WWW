@@ -101,7 +101,7 @@ function Home() {
                                     navigate(`/post/${value.id}`);
                                 }}
                             >
-                                {value.postText}
+                                <p className="postText"> {value.postText} </p>
                             </div>
                             <div className="footer">
                                 <div className="username">

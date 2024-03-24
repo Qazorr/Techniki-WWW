@@ -72,30 +72,62 @@ function App() {
                             ) : (
                                 <>
                                     <Link to="/" className="logo">
-                                        Home
+                                        <img
+                                            src={
+                                                require("./img/homepage.svg")
+                                                    .default
+                                            }
+                                            alt="Logo"
+                                            className="common-icon home-icon"
+                                        />
                                     </Link>
-                                    <Link to="/createpost">Create A Post</Link>
+                                    <Link
+                                        to="/createpost"
+                                        className="createPostBttn"
+                                    >
+                                        <img
+                                            src={
+                                                require("./img/add-button.svg")
+                                                    .default
+                                            }
+                                            alt="Logo"
+                                            className="common-icon create-icon"
+                                        />
+                                    </Link>
                                 </>
                             )}
                         </div>
-                        <div className="loggedInContainer">
-                            <div className="username">
-                                {/* When clicked on username take to the user profile */}
-                                <Link to={`/profile/${authState.id}`}>
-                                    {authState.username}
-                                </Link>
+                        {authState.status && (
+                            <div className="loggedInContainer">
+                                <div className="username">
+                                    {/* When clicked on username take to the user profile */}
+                                    <Link to={`/profile/${authState.id}`}>
+                                        <p className="home-username">
+                                            {" "}
+                                            {authState.username}{" "}
+                                        </p>
+                                        <img
+                                            src={
+                                                require("./img/profile-picture.svg")
+                                                    .default
+                                            }
+                                            alt="Logo"
+                                            className="common-icon profile-icon"
+                                        />
+                                    </Link>
+                                </div>
+                                {/* If the user is logged in show the logout button */}
+                                {authState.status && (
+                                    <Link
+                                        to="/login"
+                                        onClick={logout}
+                                        className="logoutBttn"
+                                    >
+                                        Logout
+                                    </Link>
+                                )}
                             </div>
-                            {/* If the user is logged in show the logout button */}
-                            {authState.status && (
-                                <Link
-                                    to="/login"
-                                    onClick={logout}
-                                    className="logoutBttn"
-                                >
-                                    Logout
-                                </Link>
-                            )}
-                        </div>
+                        )}
                     </div>
                     {/* Routes to the components */}
                     <Routes>
