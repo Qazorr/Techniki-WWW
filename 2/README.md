@@ -49,3 +49,7 @@ npm start
 ### Diagramy przepływu danych
 
 ...
+
+### Mockup
+
+Mockup został stworzony korzystajac ze strony [moqups](https://moqups.com/) i znajduje się pod [linkiem](https://app.moqups.com/GLMBnFfKu7kdJmfuAGQPZUzXTCissvps/view/page/af447452d?ui=0)
